@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
@@ -19,6 +21,7 @@ public class UserCircle {
 	private String userId;
 	private String circleName;
 	private boolean circleStatus = true;
+	@Temporal(TemporalType.DATE)
 	private Date joinedOn;
 
 	public int getUserCircleId() {

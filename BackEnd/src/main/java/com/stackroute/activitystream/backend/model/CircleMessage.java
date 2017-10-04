@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,7 +21,10 @@ public class CircleMessage {
 	private String messageActual;
 	private String senderId;
 	private boolean messageVisibility=true;
+	@Temporal(TemporalType.DATE)
 	private Date messageSentOn;
+	@Temporal(TemporalType.TIME)
+	private Date messageSentAt;
 	public int getMessageId() {
 		return messageId;
 	}
@@ -52,8 +58,14 @@ public class CircleMessage {
 	public Date getMessageSentOn() {
 		return messageSentOn;
 	}
-	public void setMessageSentOn(Date messageSentOn) {
-		this.messageSentOn = messageSentOn;
+	public void setMessageSentOn() {
+		this.messageSentOn = new Date();
+	}
+	public Date getMessageSentAt() {
+		return messageSentAt;
+	}
+	public void setMessageSentAt() {
+		this.messageSentAt = new Date();
 	}
 	
 

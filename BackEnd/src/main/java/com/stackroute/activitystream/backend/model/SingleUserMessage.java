@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
@@ -17,14 +19,16 @@ public class SingleUserMessage {
 	private String messageActual;
 	private String senderId,receiverId;
 	private boolean messageVisibility=true;
+	@Temporal(TemporalType.DATE)
 	private Date messageSentOn;
+	@Temporal(TemporalType.TIME)
+	private Date messageSentAt;
 	public int getMessageId() {
 		return messageId;
 	}
 	public void setMessageId(int messageId) {
 		this.messageId = messageId;
 	}
-	
 	public String getMessageActual() {
 		return messageActual;
 	}
@@ -52,8 +56,14 @@ public class SingleUserMessage {
 	public Date getMessageSentOn() {
 		return messageSentOn;
 	}
-	public void setMessageSentOn(Date messageSentOn) {
-		this.messageSentOn = messageSentOn;
+	public void setMessageSentOn() {
+		this.messageSentOn = new Date();
+	}
+	public Date getMessageSentAt() {
+		return messageSentAt;
+	}
+	public void setMessageSentAt() {
+		this.messageSentAt = new Date();
 	}
 	
 	

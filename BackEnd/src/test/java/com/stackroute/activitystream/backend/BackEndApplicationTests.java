@@ -1,4 +1,4 @@
-package com.stackroute.activitystream.backend;
+/*package com.stackroute.activitystream.backend;
 
 import static org.junit.Assert.*;
 
@@ -75,12 +75,12 @@ public class BackEndApplicationTests {
 
 	@Test
 	public void saveUser() {
-		userRegistration.setUserEmail("milaga@gmail.com");
-		userRegistration.setUserName(" Malu");
-		userRegistration.setUserAddress("savam");
-		userRegistration.setUserContact(1234567890);
-		userRegistration.setUserFullName("im malu");
-		userRegistration.setUserPassword("malu");
+		userRegistration.setUserEmail("poda@gmail.com");
+		userRegistration.setUserName(" poda");
+		userRegistration.setUserAddress("pakki");
+		userRegistration.setUserContact(100100100);
+		userRegistration.setUserFullName("im poda");
+		userRegistration.setUserPassword("pikkali");
 		System.out.println(userRegistration.getUserName());
 		assertTrue(userDAO.saveUser(userRegistration));
 	}
@@ -131,7 +131,7 @@ public class BackEndApplicationTests {
 
 	@Test
 	public void removeUserFromCircle() {
-		assertTrue(userCircleDAO.removeUserFromCircle("milaga@gmail.com", 1));
+		assertTrue(userCircleDAO.removeUserFromCircle("milaga@gmail.com", 3));
 	}
 
 	@Test
@@ -143,4 +143,31 @@ public class BackEndApplicationTests {
 	public void singleUserCircleList() {
 		assertNotNull(userCircleDAO.listOfUsersOfACircle("hoi"));
 	}
+	
+	@Test
+	public void sendUsermessage()
+	{
+		singleUserMessage.setMessageActual("hello how are you");
+		singleUserMessage.setMessageSentOn();
+		singleUserMessage.setMessageSentAt();
+		userRegistration=userDAO.findByEmail("milaga@gmail.com");
+		singleUserMessage.setSenderId(userRegistration.getUserEmail());
+		userRegistration=userDAO.findByEmail("poda@gmail.com");
+		singleUserMessage.setReceiverId(userRegistration.getUserEmail());
+		assertTrue(messageDAO.sendMessageToAUser(singleUserMessage));
+	}
+	
+	@Test
+	public void sendCircleMessage()
+	{
+		circle=circleDAO.findCircleById(2);
+		circleMessage.setCircleId(circle.getCircleId());
+		circleMessage.setMessageActual("hello pakkis");
+		circleMessage.setMessageSentOn();
+		circleMessage.setMessageSentAt();
+		userRegistration=userDAO.findByEmail("poda@gmail.com");
+		circleMessage.setSenderId(userRegistration.getUserEmail());
+		messageDAO.sendMessageToACircle(circleMessage);
+	}
 }
+*/
