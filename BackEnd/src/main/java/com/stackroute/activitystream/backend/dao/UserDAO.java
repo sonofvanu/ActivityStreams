@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.stackroute.activitystream.backend.model.UserRegistration;
 
-@Service
+
 public interface UserDAO {
 	public UserRegistration findByEmail(String email);
 

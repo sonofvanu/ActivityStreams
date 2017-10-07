@@ -1,4 +1,4 @@
-/*package com.stackroute.activitystream.backend;
+package com.stackroute.activitystream.backend;
 
 import static org.junit.Assert.*;
 
@@ -22,10 +22,12 @@ import com.stackroute.activitystream.backend.model.UserCircle;
 import com.stackroute.activitystream.backend.model.UserRegistration;
 
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class BackEndApplicationTests {
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT,classes=BackEndApplication.class)
+@EnableAspectJAutoProxy
+public class UserTestCase {
 
 	@Autowired
 	public UserDAO userDAO;
@@ -53,7 +55,7 @@ public class BackEndApplicationTests {
 
 	@Test
 	public void updateUser() {
-		userRegistration = userDAO.findByEmail("milaga@gmail.com");
+		userRegistration = userDAO.findByEmail("kodha@gmail.com");
 		System.out.println(userRegistration.getUserFullName());
 		userRegistration.setUserAddress("Bangalore city");
 		boolean updatingUser = userDAO.updateUser(userRegistration);
@@ -63,7 +65,7 @@ public class BackEndApplicationTests {
 	@Test
 	public void testGetUserByEmail() {
 
-		UserRegistration userByName = userDAO.findByEmail("milaga@gmail.com");
+		UserRegistration userByName = userDAO.findByEmail("vada@gmail.com");
 		assertNotNull(userByName);
 		System.out.println("User Email ID :" + userByName.getUserFullName());
 	}
@@ -75,7 +77,7 @@ public class BackEndApplicationTests {
 
 	@Test
 	public void saveUser() {
-		userRegistration.setUserEmail("poda@gmail.com");
+		userRegistration.setUserEmail("milaga@gmail.com");
 		userRegistration.setUserName(" poda");
 		userRegistration.setUserAddress("pakki");
 		userRegistration.setUserContact(100100100);
@@ -170,4 +172,3 @@ public class BackEndApplicationTests {
 		messageDAO.sendMessageToACircle(circleMessage);
 	}
 }
-*/

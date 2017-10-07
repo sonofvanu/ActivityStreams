@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.stackroute.activitystream.backend.model.UserCircle;
 
-@Service
+
 public interface UserCircleDAO {
 	
 	public boolean addUserToCircle(UserCircle userCircle);

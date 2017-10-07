@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.stackroute.activitystream.backend.model.Circle;
 
-@Service
+
 public interface CircleDAO {
 	public boolean createCircle(Circle circle);
 	

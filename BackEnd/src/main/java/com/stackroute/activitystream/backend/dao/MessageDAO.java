@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.stackroute.activitystream.backend.model.CircleMessage;
 import com.stackroute.activitystream.backend.model.SingleUserMessage;
 
-@Service
+
 public interface MessageDAO {
 	
 	public boolean sendMessageToAUser(SingleUserMessage singleUserMessage);
