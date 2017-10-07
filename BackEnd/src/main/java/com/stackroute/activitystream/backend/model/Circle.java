@@ -11,6 +11,9 @@ import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
+//Add Hibernate validations for all mandatory fields
+//This comments is generate and for all other domain classes.
+
 @Component
 @Entity
 public class Circle {
