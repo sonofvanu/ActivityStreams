@@ -11,12 +11,18 @@ import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
+//Add Hibernate validations for all mandatory fields
+//This comments is generate and for all other domain classes.
+
 @Component
 @Entity
 public class Circle {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private int circleId;
 	private String circleName;
+	
+	//if the data type is boolean - should take isActive
+	//if the variable name is circleStatus - use char data type and store 'Y' OR 'N'
 	private boolean circleStatus=true;
 	@Temporal(TemporalType.DATE)
 	private Date createdOn;
