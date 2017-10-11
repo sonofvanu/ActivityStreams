@@ -17,8 +17,7 @@ import com.stackroute.activitystream.backend.dao.MessageDAO;
 import com.stackroute.activitystream.backend.dao.UserCircleDAO;
 import com.stackroute.activitystream.backend.dao.UserDAO;
 import com.stackroute.activitystream.backend.model.Circle;
-import com.stackroute.activitystream.backend.model.CircleMessage;
-import com.stackroute.activitystream.backend.model.SingleUserMessage;
+import com.stackroute.activitystream.backend.model.Message;
 import com.stackroute.activitystream.backend.model.UserCircle;
 import com.stackroute.activitystream.backend.model.UserRegistration;
 
@@ -35,21 +34,19 @@ public class CircleTestCase {
 	public static Circle circle;
 	public static UserRegistration userRegistration;
 	public static UserCircle userCircle;
-	public static SingleUserMessage singleUserMessage;
-	public static CircleMessage circleMessage;
+	public static Message message;
 
 	@BeforeClass
 	public static void ObjectCreator() {
 		userRegistration = new UserRegistration();
 		circle = new Circle();
 		userCircle = new UserCircle();
-		singleUserMessage=new SingleUserMessage();
-		circleMessage=new CircleMessage();
+		message=new Message();
 	}
 
 	@Test
 	public void createCircle() {
-		circle.setCircleName("hoi");
+		circle.setCircleName("koi");
 		circle.setCreatedOn();
 		assertTrue(circleDAO.createCircle(circle));
 

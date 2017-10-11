@@ -1,19 +1,27 @@
 package com.stackroute.activitystream.backend.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
 public class UserRegistration {
-	@Id
+	@Id @Column
 	private String userEmail;
+	@Column(unique=true)
 	private String userName;
+	@NotEmpty @Column
 	private String userFullName;
+	@NotEmpty @Column
 	private String userAddress;
+	@NotNull @Column
 	private long userContact;
+	@NotEmpty @Column
 	private String userPassword;
+	private boolean isOnline = true;
 	
 	public String getUserEmail() {
 		return userEmail;
@@ -50,6 +58,12 @@ public class UserRegistration {
 	}
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
+	}
+	public boolean isOnline() {
+		return isOnline;
+	}
+	public void setOnline(boolean isOnline) {
+		this.isOnline = isOnline;
 	}
 
 }

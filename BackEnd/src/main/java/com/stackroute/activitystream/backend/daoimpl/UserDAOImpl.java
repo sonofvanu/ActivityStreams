@@ -12,15 +12,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.stackroute.activitystream.backend.dao.UserDAO;
-import com.stackroute.activitystream.backend.model.UserCredentials;
 import com.stackroute.activitystream.backend.model.UserRegistration;
+
+
 
 @Repository(value = "userDAO")
 @Transactional
 @EnableTransactionManagement
 public class UserDAOImpl implements UserDAO {
 
-	public static final Logger logger=LoggerFactory.getLogger(UserDAOImpl.class);
+public static final Logger logger=LoggerFactory.getLogger(UserDAOImpl.class);
 	
 	@Autowired 
 	SessionFactory sessionFactory;
@@ -32,11 +33,11 @@ public class UserDAOImpl implements UserDAO {
 		userRegistration = (UserRegistration) sessionFactory.getCurrentSession().get(UserRegistration.class, email);
 		if(userRegistration==null)
 		{
-			logger.error("cannot find user based on the email");
+			logger.error("cannot find user based on the email "+email);
 			return null;
 		}else
 		{
-			logger.debug("Found the user and have been returned");
+			logger.debug("Found the user "+userRegistration.getUserName()+" and have been returned");
 		return userRegistration;
 		}
 	}
@@ -45,16 +46,12 @@ public class UserDAOImpl implements UserDAO {
 	public boolean saveUser(UserRegistration userRegistration) {
 		// TODO Auto-generated method stub
 		try {
-			UserCredentials userCredentials = new UserCredentials();
-			userCredentials.setUserEmail(userRegistration.getUserEmail());
-			userCredentials.setUserPassword(userRegistration.getUserPassword());
+			
 			sessionFactory.getCurrentSession().save(userRegistration);
-			sessionFactory.getCurrentSession().save(userCredentials);
-			System.out.println(userCredentials.getUserEmail());
-			logger.debug("user saved");
+			logger.debug("user successfully registered "+userRegistration.getUserFullName());
 			return true;
 		} catch (Exception e) {
-			logger.error("cannot save the user");
+			logger.error("cannot save the user "+userRegistration.getUserFullName());
 			return false;
 		}
 	}
@@ -64,10 +61,10 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		try {
 			sessionFactory.getCurrentSession().update(userRegistration);
-			logger.debug("user updated");
+			logger.debug("user info updated for "+userRegistration.getUserFullName());
 			return true;
 		} catch (Exception e) {
-			logger.error("user cannot be updated");
+			logger.error("user info cannot be updated for "+userRegistration.getUserFullName());
 			return false;
 		}
 	}
@@ -78,10 +75,10 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			
 			sessionFactory.getCurrentSession().delete(findByEmail(emailId));
-			logger.debug("user deleted");
+			logger.debug("user deleted with email id "+emailId);
 			return true;
 		} catch (Exception e) {
-			logger.error("user cannot be deleted");
+			logger.error("user cannot be deleted with email id ");
 			return false;
 		}
 	}
@@ -101,4 +98,6 @@ public class UserDAOImpl implements UserDAO {
 			return null;
 		}
 	}
+
+	
 }

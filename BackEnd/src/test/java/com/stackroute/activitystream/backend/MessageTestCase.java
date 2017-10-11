@@ -17,8 +17,7 @@ import com.stackroute.activitystream.backend.dao.MessageDAO;
 import com.stackroute.activitystream.backend.dao.UserCircleDAO;
 import com.stackroute.activitystream.backend.dao.UserDAO;
 import com.stackroute.activitystream.backend.model.Circle;
-import com.stackroute.activitystream.backend.model.CircleMessage;
-import com.stackroute.activitystream.backend.model.SingleUserMessage;
+import com.stackroute.activitystream.backend.model.Message;
 import com.stackroute.activitystream.backend.model.UserCircle;
 import com.stackroute.activitystream.backend.model.UserRegistration;
 
@@ -36,40 +35,38 @@ public class MessageTestCase {
 	public static Circle circle;
 	public static UserRegistration userRegistration;
 	public static UserCircle userCircle;
-	public static SingleUserMessage singleUserMessage;
-	public static CircleMessage circleMessage;
+	public static Message message;
 
 	@BeforeClass
 	public static void ObjectCreator() {
-		singleUserMessage=new SingleUserMessage();
-		circleMessage=new CircleMessage();
+		message=new Message();
 	}
 
 	
 	@Test
 	public void sendUsermessage()
 	{
-		singleUserMessage.setMessageActual("hello how are you");
-		singleUserMessage.setMessageSentOn();
-		singleUserMessage.setMessageSentAt();
+		message.setMessageActual("hello how are you-------im fine");
+		message.setMessageSentOn();
+		message.setMessageSentAt();
 		userRegistration=userDAO.findByEmail("milaga@gmail.com");
-		singleUserMessage.setSenderId(userRegistration.getUserEmail());
+		message.setSenderId(userRegistration.getUserEmail());
 		userRegistration=userDAO.findByEmail("poda@gmail.com");
-		singleUserMessage.setReceiverId(userRegistration.getUserEmail());
-		assertTrue(messageDAO.sendMessageToAUser(singleUserMessage));
+		message.setReceiverId(userRegistration.getUserEmail());
+		assertTrue(messageDAO.sendMessage(message));
 	}
 	
 	@Test
 	public void sendCircleMessage()
 	{
 		circle=circleDAO.findCircleById(2);
-		circleMessage.setCircleId(circle.getCircleId());
-		circleMessage.setMessageActual("hello pakkis");
-		circleMessage.setMessageSentOn();
-		circleMessage.setMessageSentAt();
+		message.setCircleId(circle.getCircleId());
+		message.setMessageActual("hello pakkis");
+		message.setMessageSentOn();
+		message.setMessageSentAt();
 		userRegistration=userDAO.findByEmail("poda@gmail.com");
-		circleMessage.setSenderId(userRegistration.getUserEmail());
-		messageDAO.sendMessageToACircle(circleMessage);
+		message.setSenderId(userRegistration.getUserEmail());
+		messageDAO.sendMessage(message);
 	}
 
 }
